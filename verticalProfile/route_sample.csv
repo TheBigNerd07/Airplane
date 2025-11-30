@@ -1,0 +1,7 @@
+# name,distance_nm,altitude_ft
+DEP,0,500
+WPT1,30,8000
+WPT2,80,18000
+CRZ,150,28000
+TOPD,250,28000
+ARR,330,3000
