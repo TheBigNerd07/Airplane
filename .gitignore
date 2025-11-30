@@ -2,3 +2,5 @@
 wx_brief
 .DS_Store
 .vscode
+flight_log
+flight_log.csv
