@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ofp>
+  <navlog>
+    <navlog_fix fix="KSEA" lat="47.449" lon="-122.309" alt="500"/>
+    <navlog_fix fix="SEA" lat="47.435" lon="-122.308" alt="8000"/>
+    <navlog_fix fix="DQO" lat="47.7" lon="-121.9" alt="18000"/>
+    <navlog_fix fix="PAE" lat="47.906" lon="-122.281" alt="28000"/>
+    <navlog_fix fix="ARR" lat="47.62" lon="-117.53" alt="3000"/>
+  </navlog>
+</ofp>
