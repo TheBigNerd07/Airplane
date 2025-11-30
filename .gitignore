@@ -1,3 +1,4 @@
 # Local build artifacts
 wx_brief
 .DS_Store
+.vscode
