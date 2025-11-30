@@ -1,0 +1,28 @@
+# icao,name,country,region,lat,lon,longest_runway_ft,kind
+KSEA,Seattle-Tacoma Intl,USA,US-WA,47.449,-122.309,11890,large_airport
+KPAE,Snohomish County,USA,US-WA,47.906,-122.281,9010,medium_airport
+KBFI,Boeing Field,USA,US-WA,47.53,-122.302,10000,medium_airport
+KGEG,Spokane Intl,USA,US-WA,47.619,-117.533,11002,medium_airport
+KPDX,Portland Intl,USA,US-OR,45.589,-122.598,11803,medium_airport
+KLAX,Los Angeles Intl,USA,US-CA,33.942,-118.408,12091,large_airport
+KSAN,San Diego Intl,USA,US-CA,32.733,-117.189,9400,medium_airport
+KSFO,San Francisco Intl,USA,US-CA,37.621,-122.379,11870,large_airport
+KDEN,Denver Intl,USA,US-CO,39.856,-104.673,16000,large_airport
+KORD,Chicago O'Hare Intl,USA,US-IL,41.974,-87.907,13000,large_airport
+KATL,Hartsfield-Jackson Atlanta Intl,USA,US-GA,33.636,-84.428,12390,large_airport
+KJFK,John F Kennedy Intl,USA,US-NY,40.641,-73.778,14511,large_airport
+KLGA,LaGuardia,USA,US-NY,40.777,-73.872,7003,medium_airport
+KBOS,Boston Logan Intl,USA,US-MA,42.364,-71.005,10083,large_airport
+CYVR,Vancouver Intl,CAN,BC,49.195,-123.181,11500,large_airport
+CZBB,Boundary Bay,CAN,BC,49.074,-123.012,5000,small_airport
+CYXX,Abbotsford Intl,CAN,BC,49.025,-122.357,9600,medium_airport
+EGLL,London Heathrow,UK,ENG,51.47,-0.454,12000,large_airport
+EDDF,Frankfurt am Main,GER,HE,50.037,8.562,13123,large_airport
+RJTT,Tokyo Haneda,JPN,JP-13,35.549,139.779,9843,large_airport
+YSSY,Sydney Kingsford Smith,AUS,NSW,-33.939,151.175,12999,large_airport
+OMDB,Dubai Intl,UAE,DXB,25.253,55.364,13123,large_airport
+KPHX,Phoenix Sky Harbor,USA,US-AZ,33.435,-112.0,11489,large_airport
+KMCO,Orlando Intl,USA,US-FL,28.431,-81.308,12005,large_airport
+KMSP,Minneapolis–Saint Paul Intl,USA,US-MN,44.882,-93.222,11006,large_airport
+KCLT,Charlotte Douglas Intl,USA,US-NC,35.214,-80.943,10000,large_airport
+KSLC,Salt Lake City Intl,USA,US-UT,40.789,-111.978,12003,large_airport

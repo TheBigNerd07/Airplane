@@ -1,0 +1,28 @@
+# name,role,home(optional),range_nm,min_runway_ft
+Skyhawk,C172 GA,,600,0
+KingAir,Turboprop Shuttle,,1200,0
+737-800,Shorthaul Jet,,1800,0
+787-9,Longhaul Widebody,,4000,0
+CRJ-700,Regional Jet,,1200,0
+A320,Shorthaul Jet,,3100,5000
+A321neo,Shorthaul Jet,,3500,5500
+A330-900neo,Longhaul Widebody,,7200,8500
+A350-900,Longhaul Widebody,,8100,9000
+Boeing 737-700,Shorthaul Jet,,3000,5000
+Boeing 737 MAX 8,Shorthaul Jet,,3500,5400
+Boeing 747-8,Ultra-Longhaul Jet,,8000,10000
+Boeing 757-200,Mediumhaul Jet,,3900,6000
+Boeing 767-300ER,Longhaul Jet,,6000,7800
+Boeing 777-300ER,Longhaul Jet,,7300,9000
+Embraer E175,Regional Jet,,2100,4500
+Embraer E195-E2,Regional Jet,,2600,4900
+CRJ-900,Regional Jet,,1700,4200
+Dash 8 Q400,Turboprop,,1100,4500
+ATR 72-600,Turboprop,,950,4100
+Cessna 152,GA,,350,2000
+Cessna 208 Caravan,GA/Utility,,900,2500
+Cirrus SR22,GA,,1000,3100
+Piper PA-28 Archer,GA,,600,2500
+Pilatus PC-12,GA/Utility,,1500,2800
+TBM 960,GA/Turboprop,,1700,3000
+King Air 350,Turboprop,,1800,3300
