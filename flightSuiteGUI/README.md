@@ -24,3 +24,4 @@ Notes:
 - Build each tool first in its own folder; the launcher expects binaries at the relative paths above.
 - This is a text UI (no graphics) to keep dependencies minimal. It prompts for the same inputs each tool expects and prints their output.
 - METAR menu supports fetching multiple recent reports when you enter a history count (uses `--icao-history`).
+- SimBrief menu defaults: OFP `./ofp.xml`, CSV `../verticalProfile/route_sample.csv` if you press Enter.

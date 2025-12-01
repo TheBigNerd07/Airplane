@@ -26,3 +26,19 @@ KMCO,Orlando Intl,USA,US-FL,28.431,-81.308,12005,large_airport
 KMSP,Minneapolis–Saint Paul Intl,USA,US-MN,44.882,-93.222,11006,large_airport
 KCLT,Charlotte Douglas Intl,USA,US-NC,35.214,-80.943,10000,large_airport
 KSLC,Salt Lake City Intl,USA,US-UT,40.789,-111.978,12003,large_airport
+KPHX,Phoenix Sky Harbor Intl,USA,US-AZ,33.435,-112.0,11489,large_airport
+KBWI,Baltimore/Washington Intl,USA,US-MD,39.175,-76.668,10502,large_airport
+KSJC,San Jose Intl,USA,US-CA,37.363,-121.928,11000,medium_airport
+KOAK,Oakland Intl,USA,US-CA,37.721,-122.221,10520,medium_airport
+KABQ,Albuquerque Intl Sunport,USA,US-NM,35.04,-106.609,13300,large_airport
+KSAT,San Antonio Intl,USA,US-TX,29.534,-98.469,8502,medium_airport
+KTPA,Tampa Intl,USA,US-FL,27.976,-82.533,11002,large_airport
+KCMH,John Glenn Columbus Intl,USA,US-OH,39.998,-82.891,10000,medium_airport
+KFLL,Fort Lauderdale Intl,USA,US-FL,26.072,-80.153,9000,large_airport
+PHNL,Honolulu Intl,USA,US-HI,21.324,-157.925,12000,large_airport
+KANC,Ted Stevens Anchorage Intl,USA,US-AK,61.174,-149.998,12400,large_airport
+CYYZ,Toronto Pearson Intl,CAN,ON,43.677,-79.624,11120,large_airport
+CYUL,Montreal Trudeau Intl,CAN,QC,45.457,-73.749,11000,large_airport
+CYWG,Winnipeg Intl,CAN,MB,49.91,-97.239,8700,medium_airport
+LFPG,Paris Charles de Gaulle,FRA,IDF,49.009,2.547,13794,large_airport
+EDDF,Frankfurt Intl,GER,HE,50.037,8.562,13123,large_airport

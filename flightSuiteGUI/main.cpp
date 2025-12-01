@@ -114,13 +114,18 @@ static void vertical_profile_menu() {
 
 static void simbrief_menu() {
     std::string ofp, out;
-    std::cout << "SimBrief OFP XML path: ";
+    std::cout << "SimBrief OFP XML path [./ofp.xml]: ";
     std::getline(std::cin, ofp);
-    std::cout << "Output CSV path [route_sample.csv]: ";
+    std::cout << "Output CSV path [../verticalProfile/route_sample.csv]: ";
     std::getline(std::cin, out);
     std::stringstream cmd;
-    cmd << "../simBriefRoute/simbrief_route --ofp \"" << ofp << "\" ";
-    if (!out.empty()) cmd << "--out \"" << out << "\"";
+    std::string ofp_path = ofp.empty() ? "./ofp.xml" : ofp;
+    cmd << "../simBriefRoute/simbrief_route --ofp \"" << ofp_path << "\" ";
+    if (!out.empty()) {
+        cmd << "--csv \"" << out << "\"";
+    } else {
+        cmd << "--csv \"../verticalProfile/route_sample.csv\"";
+    }
     auto res = run_cmd(cmd.str());
     std::cout << res << "\n";
 }
