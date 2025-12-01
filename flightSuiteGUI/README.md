@@ -18,7 +18,7 @@ Menu options:
 - NOTAM Risk (`notamTool/notam_risk`)
 - E6B Calculator (`e6bTool/e6b`)
 - Vertical Profile (`verticalProfile/vert_profile`)
-- SimBrief Summary / Route -> CSV (`simBriefRoute/simbrief_route`)
+- SimBrief Summary / Route -> CSV (`simbriefBrief/simbrief_brief`)
 
 Notes:
 - Build each tool first in its own folder; the launcher expects binaries at the relative paths above.

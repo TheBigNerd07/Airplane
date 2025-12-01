@@ -1,23 +1,24 @@
-# SimBrief Route Exporter (C++)
+# SimBrief Brief (C++)
 
 Reads a SimBrief OFP XML, prints a concise summary, and can optionally write a `route_sample.csv` compatible with `verticalProfile/` (name, cumulative distance nm, altitude ft).
 
 ## Build
 ```bash
-g++ -std=c++17 -O2 main.cpp -o simbrief_route
+g++ -std=c++17 -O2 main.cpp -o simbrief_brief
 ```
 
 ## Run
 ```bash
 # Summarize a saved SimBrief XML
-./simbrief_route --ofp sample_ofp.xml
+./simbrief_brief --ofp sample_ofp.xml
 
 # Summarize and export route CSV
-./simbrief_route --ofp sample_ofp.xml --csv route_sample.csv
+./simbrief_brief --ofp sample_ofp.xml --csv route_sample.csv
 ```
 
 What it does:
 - Prints key OFP fields when present (flight number/callsign, origin/dest/alt, route string, cruise altitude/FL, distance, ETE, fuel plan, pax/cargo, airframe).
+- Prints weights when present (plan takeoff/landing/ZFW).
 - Parses `<navlog_fix>` entries (`fix`, `lat`, `lon`, `alt`), computes great-circle cumulative distance, and reports fix count.
 - If `--csv` is provided, also writes a verticalProfile-friendly CSV with cumulative distances and altitudes (scales flight levels like 350 -> 35000).
 

@@ -259,6 +259,9 @@ static void print_summary(const std::string& content, const std::vector<Fix>& fi
     std::string cargo = val({"cargo"});
     FuelInfo fuel = parse_fuel(content);
     AircraftInfo ac = parse_aircraft(content);
+    std::string tow = val({"plan_takeoff", "takeoff_weight"});
+    std::string ldw = val({"plan_landing", "landing_weight"});
+    std::string zfw = val({"plan_zfw", "zfw", "estimated_zfw"});
 
     double navlog_dist = cumulative_distance(fixes);
 
@@ -285,6 +288,9 @@ static void print_summary(const std::string& content, const std::vector<Fix>& fi
               << (fuel.reserve ? *fuel.reserve : "N/A") << " / "
               << (fuel.taxi ? *fuel.taxi : "N/A") << " / "
               << (fuel.extra ? *fuel.extra : "N/A") << "\n";
+    if (tow != "N/A" || ldw != "N/A" || zfw != "N/A") {
+        std::cout << "Weights (TOW/LDW/ZFW): " << tow << " / " << ldw << " / " << zfw << "\n";
+    }
     std::cout << "Navlog fixes: " << fixes.size() << "\n";
 }
 

@@ -120,7 +120,7 @@ static void simbrief_menu() {
     std::getline(std::cin, out);
     std::stringstream cmd;
     std::string ofp_path = ofp.empty() ? "./ofp.xml" : ofp;
-    cmd << "../simBriefRoute/simbrief_route --ofp \"" << ofp_path << "\" ";
+    cmd << "../simbriefBrief/simbrief_brief --ofp \"" << ofp_path << "\" ";
     if (!out.empty()) {
         cmd << "--csv \"" << out << "\"";
     } else {
@@ -138,7 +138,7 @@ static void menu() {
         std::cout << "3) NOTAM Risk\n";
         std::cout << "4) E6B Calculator\n";
         std::cout << "5) Vertical Profile\n";
-        std::cout << "6) SimBrief Route -> CSV\n";
+        std::cout << "6) SimBrief Summary / Route -> CSV\n";
         std::cout << "7) Quit\n";
         std::cout << "Select: ";
         std::string choice;
@@ -159,8 +159,8 @@ static void menu() {
             if (file_exists("../verticalProfile/vert_profile")) vertical_profile_menu();
             else std::cout << "Build ../verticalProfile/vert_profile first.\n";
         } else if (choice == "6") {
-            if (file_exists("../simBriefRoute/simbrief_route")) simbrief_menu();
-            else std::cout << "Build ../simBriefRoute/simbrief_route first.\n";
+            if (file_exists("../simbriefBrief/simbrief_brief")) simbrief_menu();
+            else std::cout << "Build ../simbriefBrief/simbrief_brief first.\n";
         } else if (choice == "7" || choice == "q" || choice == "Q") {
             break;
         } else {
