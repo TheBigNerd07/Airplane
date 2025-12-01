@@ -13,8 +13,6 @@
 
 constexpr double kPi = 3.14159265358979323846;
 
-enum class OutputFormat { Text, Json };
-
 struct WindInfo {
     std::optional<int> direction_deg; // std::nullopt for VRB
     int speed_kt = 0;
@@ -399,103 +397,10 @@ static void print_trend_text(const std::vector<MetarDecoded>& mets) {
     }
 }
 
-static void print_metar_json(const std::vector<std::string>& raws,
-                             const std::vector<MetarDecoded>& mets, const Minima& minima,
-                             int runway_heading_deg) {
-    std::cout << "  \"metars\": [\n";
-    for (size_t i = 0; i < mets.size(); ++i) {
-        const auto& m = mets[i];
-        std::cout << "    {\n";
-        std::cout << "      \"raw\": \"" << raws[i] << "\",\n";
-        std::cout << "      \"station\": \"" << m.station << "\",\n";
-        std::cout << "      \"timestamp\": \"" << m.timestamp_z << "\",\n";
-        std::cout << "      \"wind\": {";
-        if (m.wind.direction_deg) {
-            std::cout << "\"dir\":" << *m.wind.direction_deg << ",\"spd\":" << m.wind.speed_kt;
-        } else {
-            std::cout << "\"dir\":null,\"spd\":" << m.wind.speed_kt;
-        }
-        if (m.wind.gust_kt) {
-            std::cout << ",\"gust\":" << *m.wind.gust_kt;
-        }
-        auto comps = compute_wind_components(m.wind, runway_heading_deg);
-        if (comps) {
-            std::cout << ",\"headwind\":" << format_double(comps->headwind)
-                      << ",\"crosswind\":" << format_double(comps->crosswind);
-        }
-        std::cout << "},\n";
-        std::cout << "      \"visibility_sm\": "
-                  << (m.visibility_sm ? format_double(*m.visibility_sm) : "null") << ",\n";
-        if (m.ceiling_ft) {
-            std::cout << "      \"ceiling_ft\": " << *m.ceiling_ft << ",\n";
-        } else {
-            std::cout << "      \"ceiling_ft\": null,\n";
-        }
-        std::cout << "      \"ceiling_layer\": \"" << m.ceiling_layer << "\",\n";
-        std::cout << "      \"weather\": [";
-        for (size_t j = 0; j < m.weather.size(); ++j) {
-            if (j) std::cout << ",";
-            std::cout << "\"" << m.weather[j] << "\"";
-        }
-        std::cout << "],\n";
-        std::cout << "      \"alerts\": {";
-        bool first_alert = true;
-        if (m.visibility_sm && *m.visibility_sm < minima.min_visibility_sm) {
-            std::cout << "\"visibility\":\"below minima\"";
-            first_alert = false;
-        }
-        if (m.ceiling_ft && *m.ceiling_ft < minima.min_ceiling_ft) {
-            if (!first_alert) std::cout << ",";
-            std::cout << "\"ceiling\":\"below minima\"";
-            first_alert = false;
-        }
-        auto comps2 = compute_wind_components(m.wind, runway_heading_deg);
-        if (comps2 && std::fabs(comps2->crosswind) > minima.max_crosswind_kt) {
-            if (!first_alert) std::cout << ",";
-            std::cout << "\"crosswind\":\"exceeds minima\"";
-            first_alert = false;
-        }
-        std::cout << "}\n";
-        std::cout << "    }" << (i + 1 == mets.size() ? "\n" : ",\n");
-    }
-    std::cout << "  ]";
-}
-
-static void print_trend_json(const std::vector<MetarDecoded>& mets) {
-    std::cout << ",\n  \"trend\": ";
-    if (mets.size() < 2) {
-        std::cout << "null\n";
-        return;
-    }
-    const auto& first = mets.front();
-    const auto& last = mets.back();
-    std::cout << "{";
-    bool wrote_field = false;
-    if (first.visibility_sm && last.visibility_sm) {
-        std::cout << "\"visibility\":{\"from\":" << format_double(*first.visibility_sm)
-                  << ",\"to\":" << format_double(*last.visibility_sm)
-                  << ",\"state\":\"" << trend_word(*last.visibility_sm - *first.visibility_sm) << "\"}";
-        wrote_field = true;
-    }
-    if (first.ceiling_ft && last.ceiling_ft) {
-        if (wrote_field) std::cout << ",";
-        std::cout << "\"ceiling\":{\"from\":" << *first.ceiling_ft << ",\"to\":" << *last.ceiling_ft
-                  << ",\"state\":\"" << trend_word(*last.ceiling_ft - *first.ceiling_ft) << "\"}";
-        wrote_field = true;
-    }
-    if (first.wind.direction_deg && last.wind.direction_deg) {
-        if (wrote_field) std::cout << ",";
-        std::cout << "\"wind_dir\":{\"from\":" << *first.wind.direction_deg
-                  << ",\"to\":" << *last.wind.direction_deg << "}";
-    }
-    std::cout << "}\n";
-}
-
 static void usage(const char* prog) {
     std::cerr << "Usage: " << prog
               << " (--metar \"RAW METAR\" ... | --icao KJFK [...]) [--icao-history N] [--taf \"RAW TAF\"] "
-                 "[--runway 220] [--min-ceiling 1000] [--min-vis 3] [--max-xwind 15] "
-                 "[--format text|json]\n";
+                 "[--runway 220] [--min-ceiling 1000] [--min-vis 3] [--max-xwind 15]\n";
 }
 
 int main(int argc, char** argv) {
@@ -505,7 +410,6 @@ int main(int argc, char** argv) {
     std::string taf_raw;
     Minima minima;
     int runway_heading = 0;
-    OutputFormat format = OutputFormat::Text;
     int history_count = 0;
 
     for (int i = 1; i < argc; ++i) {
@@ -524,13 +428,6 @@ int main(int argc, char** argv) {
             minima.min_visibility_sm = std::stod(argv[++i]);
         } else if (arg == "--max-xwind" && i + 1 < argc) {
             minima.max_crosswind_kt = std::stod(argv[++i]);
-        } else if (arg == "--format" && i + 1 < argc) {
-            std::string f = to_upper(argv[++i]);
-            if (f == "JSON") {
-                format = OutputFormat::Json;
-            } else {
-                format = OutputFormat::Text;
-            }
         } else if (arg == "--icao-history" && i + 1 < argc) {
             history_count = std::stoi(argv[++i]);
         } else if (arg == "--help" || arg == "-h") {
@@ -574,19 +471,6 @@ int main(int argc, char** argv) {
     decoded.reserve(metar_raws.size());
     for (const auto& raw : metar_raws) {
         decoded.push_back(decode_metar(raw));
-    }
-
-    if (format == OutputFormat::Json) {
-        std::cout << "{\n";
-        print_metar_json(metar_raws, decoded, minima, runway_heading);
-        print_trend_json(decoded);
-        if (!taf_raw.empty()) {
-            std::cout << ",\n  \"taf_raw\": \"" << taf_raw << "\"\n";
-        } else {
-            std::cout << "\n";
-        }
-        std::cout << "}\n";
-        return 0;
     }
 
     for (size_t i = 0; i < metar_raws.size(); ++i) {

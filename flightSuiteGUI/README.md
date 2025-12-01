@@ -18,9 +18,9 @@ Menu options:
 - NOTAM Risk (`notamTool/notam_risk`)
 - E6B Calculator (`e6bTool/e6b`)
 - Vertical Profile (`verticalProfile/vert_profile`)
-- SimBrief Route -> CSV (`simBriefRoute/simbrief_route`)
+- SimBrief Summary / Route -> CSV (`simBriefRoute/simbrief_route`)
 
 Notes:
 - Build each tool first in its own folder; the launcher expects binaries at the relative paths above.
 - This is a text UI (no graphics) to keep dependencies minimal. It prompts for the same inputs each tool expects and prints their output.
-- METAR menu supports fetching multiple recent reports when you enter a history count (uses `--icao-history`).***
+- METAR menu supports fetching multiple recent reports when you enter a history count (uses `--icao-history`).

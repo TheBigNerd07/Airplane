@@ -14,9 +14,6 @@ Pass one or more METAR strings (quoted) or ask the tool to fetch by ICAO. Set pe
 ./wx_brief --metar "KJFK 011651Z 18012G18KT 10SM BKN025 OVC035 18/12 A2992" \
            --runway 220 --min-ceiling 1000 --min-vis 3 --max-xwind 15
 
-# Fetch latest live METAR by ICAO, output JSON
-./wx_brief --icao kjfk --format json --runway 220
-
 # Fetch last 5 METARs for trend automatically (from NOAA cycles)
 ./wx_brief --icao kjfk --icao-history 5 --runway 220
 
@@ -32,10 +29,6 @@ What you get:
 - Plain-English weather tags (rain/snow/fog/etc).
 - Trend summary if you pass more than one METAR.
 - Optional raw TAF display with `--taf "RAW TAF STRING"`.
-
-Output formats:
-- `--format text` (default) prints human-friendly sections.
-- `--format json` prints a JSON object with `metars` array, optional `trend`, and optional `taf_raw`.
 
 Notes:
 - Live fetch hits `https://tgftp.nws.noaa.gov/data/observations/metar/stations/<ICAO>.TXT` via `curl`; network access must be available and `curl` installed.

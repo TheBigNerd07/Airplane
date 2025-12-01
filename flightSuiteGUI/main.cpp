@@ -24,7 +24,7 @@ static bool file_exists(const std::string& path) {
 }
 
 static void metar_menu() {
-    std::string metar, icao, runway, fmt, hist;
+    std::string metar, icao, runway, hist;
     std::cout << "Enter raw METAR (leave blank to fetch via --icao): ";
     std::getline(std::cin, metar);
     std::cout << "Enter ICAO to fetch (optional): ";
@@ -33,15 +33,12 @@ static void metar_menu() {
     std::getline(std::cin, hist);
     std::cout << "Runway heading (deg, optional): ";
     std::getline(std::cin, runway);
-    std::cout << "Format (text/json) [text]: ";
-    std::getline(std::cin, fmt);
     std::stringstream cmd;
     cmd << "../metarViewer/wx_brief ";
     if (!metar.empty()) cmd << "--metar \"" << metar << "\" ";
     if (!icao.empty()) cmd << "--icao " << icao << " ";
     if (!hist.empty()) cmd << "--icao-history " << hist << " ";
     if (!runway.empty()) cmd << "--runway " << runway << " ";
-    if (!fmt.empty()) cmd << "--format " << fmt << " ";
     auto out = run_cmd(cmd.str());
     std::cout << out << "\n";
 }
